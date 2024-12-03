@@ -276,6 +276,9 @@ def main():
                     help="file to read for mcu protocol dictionary")
     opts.add_option("--import-test", action="store_true",
                     help="perform an import module test")
+    opts.add_option("--macros", dest="macros",
+                    default='/home/pi/printer_data/macros',
+                    help="store macros")
     options, args = opts.parse_args()
     if options.import_test:
         import_test()
@@ -300,6 +303,8 @@ def main():
     if options.logfile:
         start_args['log_file'] = options.logfile
         bglogger = queuelogger.setup_bg_logging(options.logfile, debuglevel)
+    if options.macros:
+        start_args['macros_path'] = options.macros
     else:
         logging.getLogger().setLevel(debuglevel)
     logging.info("Starting Klippy...")

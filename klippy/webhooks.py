@@ -363,7 +363,7 @@ class WebHooks:
                     'user_id': os.getuid(),
                     'group_id': os.getgid()}
         start_args = self.printer.get_start_args()
-        for sa in ['log_file', 'config_file', 'software_version', 'cpu_info']:
+        for sa in ['log_file', 'config_file', 'macros_path', 'software_version', 'cpu_info']:
             response[sa] = start_args.get(sa)
         web_request.send(response)
 
